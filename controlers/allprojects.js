@@ -1,0 +1,14 @@
+const Project=require("../models/projectsModel.js");
+
+const Allprojects = async (req, res) => {
+  try {
+    const projectdata = await Project.find({});
+   // console.log(projectdata);
+    res.json(projectdata); 
+  } catch (error) {
+    console.error(" Error fetching projects:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+module.exports = { Allprojects }; 
