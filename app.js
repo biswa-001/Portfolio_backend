@@ -9,7 +9,13 @@ const app=express();
 const projectRoute=require("./routes/allproject.js");
 
 app.set("port",process.env.PORT || 2000);
-app.use(cors());
+const corsOptions = {
+  origin: "https://portfolio-biswajit-ghosh.vercel.app",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"],
+};
+app.use(cors(corsOptions));
+
 app.use(bodyParser.json());
 app.use(express.json({limit:"40kb"}));
 app.use(express.urlencoded({limit:"40kb",extended:true}));
