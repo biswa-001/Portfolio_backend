@@ -11,4 +11,19 @@ const Allprojects = async (req, res) => {
   }
 };
 
-module.exports = { Allprojects }; 
+const Viewproject=async(req,res)=>
+{
+const {id}=req.params;
+try{
+const getsingleProject=await Project.findById(id);
+res.json(getsingleProject)
+}catch{
+  console.error(" Error fetching projects:", error);
+    res.status(500).json({ error: "Internal server error" });
+}
+
+
+
+}
+
+module.exports = { Allprojects ,Viewproject}; 
