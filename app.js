@@ -9,8 +9,20 @@ const app=express();
 const projectRoute=require("./routes/allproject.js");
 
 app.set("port",process.env.PORT || 2000);
+
+ const alloworigin=[
+   "https://portfolio-biswajit-ghosh.vercel.app",
+   "http://localhost:3000"
+]
 const corsOptions = {
-  origin: "https://portfolio-biswajit-ghosh.vercel.app",
+   origin:function (origin, callback) {
+    if (!origin || alloworigin.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  
   methods: ["GET", "POST"],
   allowedHeaders: ["Content-Type"],
 };
